@@ -1,0 +1,10 @@
+{% load thumbnail %}
+<div class="btn_login">
+	<a href="{% url 'perfil' usuario.uid %}">
+		<h3>{{ usuario.username }}</h3>
+		{% thumbnail usuario.avatar "50x50" crop="center" as im %}
+		    <img src="{{ im.url }}">
+		{% endthumbnail %}
+	</a>
+	<a href="{% url 'logout' %}">Salir :(</a>
+</div>

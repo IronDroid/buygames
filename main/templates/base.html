@@ -1,0 +1,43 @@
+{% load dajaxice_templatetags %}
+{% load thumbnail %}
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>BuyGames</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style_common.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style5.css">
+	<script src="{{ STATIC_URL }}js/jquery.js"></script>
+	{% dajaxice_js_import %}
+</head>
+<body>
+	<div class="wrap">
+	<header>
+		<h1>BuyGames!!</h1>
+		{% if user.is_anonymous %}
+			{% include "login.html" %}
+		{% else %}
+			{% include "sign.html" %}	
+		{% endif %}
+	</header>
+	<div class="divmenu">
+		<ul class="menu">
+			<li><a href="{% url 'main' %}">Inicio</a></li>
+			<li><a href="#categoria">Categoria</a></li>
+			<li><a href="#plataforma">Plataforma</a></li>
+			<li><a href="#about">Contacto</a></li>
+		</ul>
+	</div>
+	<section class="wrap-contain">
+	{% block contain %}
+	{% endblock contain %}
+	</section>
+	<footer>
+		<h2>INF-281 C1</h2>
+	</footer>
+	</div>
+</body>
+</html>

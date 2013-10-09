@@ -1,0 +1,87 @@
+body{
+	background: #e5e5e5;
+	font-size: 16px;
+}
+footer, header{
+	background: #66cbdd;
+	padding: 1em;
+}
+header *{
+	display: inline-block;
+	vertical-align: middle;
+}
+.btn-comprar{
+	background: #e74c3c;
+	padding: .5em 1em;
+}
+.btn-comprar:hover{
+	background: #ec7063;
+	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,0.27);
+}
+.btn_login{
+	position: absolute;
+	right: 10px;
+	top: 30px;
+}
+.btn_login img{
+	padding-right: .5em;
+}
+.container{
+	padding: 1em 0;
+	width: 100%;
+}
+.divmenu{
+	background: #febb22;
+	padding: .5em 0;
+}
+.info-container, .cover-container{
+	display: inline-block;
+	vertical-align: top;
+}
+.info-container{
+	padding: 0 1em;
+	max-width: 70%;
+}
+.info-container a{
+	color: #fefefe;
+	text-decoration: none;
+}
+.info-container h2{
+	margin: 0;
+}
+.info-container h4{
+	margin: 0;
+}
+.info-container h5{
+	margin: 1em 0;
+}
+.menu li{
+	display: inline-block;
+	list-style: none;
+	padding: 0 1em;
+}
+.menu li a{
+	color: #fefefe;
+	text-decoration: none;
+}
+.menu li a:hover{
+	color: white;
+}
+.producto{
+	display: inline-block;
+	vertical-align: top;
+}
+.votos *{
+	color: black;
+	vertical-align: top;
+}
+.wrap{
+	background: #fefefe;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+.wrap-contain{
+	background: #ededed;
+	margin: 0 auto;
+	max-width: 1000px;
+}

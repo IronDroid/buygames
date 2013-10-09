@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block contain %}
+{% for prod in productos %}
+<div class="producto view view-fifth">
+	{% thumbnail prod.portada "250x250" crop="center" as im %}
+	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+	{% endthumbnail %}
+	<div class="mask">
+		<h2>{{ prod.nombre }}</h2>
+		<p>{{ prod.categoria }}</p>
+		<h4>{{ prod.fecha_lanzamiento }}</h4>
+		<a class="info" href="{% url 'detail' prod.pk %}">Comprar</a>
+	</div>
+</div>
+{% empty %}
+	<h2>NO hay productos!!!! x-(</h2>
+{% endfor %}
+{% endblock contain %}

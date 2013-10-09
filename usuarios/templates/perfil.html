@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block contain %}
+{% thumbnail usuario.avatar "70x70" crop="center" as im %}
+<img src="{{ im.url }}">
+{% endthumbnail %}
+<h2>Configuracion de Perfil</h2>
+<h3>Nombre:</h3>
+<input type="text">
+<h3>email</h3>
+<input type="text">
+<input type="submit">
+<h4>
+	<a href="#ajax-delete">Eliminar cuenta</a>
+</h4>
+{% endblock %}

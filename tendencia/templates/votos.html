@@ -1,0 +1,15 @@
+<div class="votos">
+	<a href="#votar">
+		<img src="{{ STATIC_URL }}img/button-up.jpg" alt="voto">
+		{% if user.is_anonymous %}
+		<span>votos: {{ votos }}</span>	
+		{% else %}
+		<span onclick="Dajaxice.main.sayhello(my_js_callback);">votos: {{ votos }}</span>
+		{% endif %}
+	</a>
+</div>
+<script>
+function my_js_callback(data){
+    alert(data.message);
+}
+</script>
