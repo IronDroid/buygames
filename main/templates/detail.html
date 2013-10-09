@@ -10,7 +10,15 @@
 	<div class="info-container">
 		<h2>{{ prod.nombre }}</h2>
 		<h5>{{ prod.fecha_lanzamiento }}</h5>
-		<a class="btn-comprar" href="#comprar_ajax">Comprar</a>
+		{% if user.is_anonymous %}
+			<span class="btn-comprar">Comprar</span>
+		{% else %}
+			{% if is_compra %}
+				<a class="btn-comprar" href="#comprado">Comprado</a>
+			{% else %}
+				<a class="btn-comprar" href="#comprar" onclick="Dajaxice.main.comprar(compra_callback, {'pid':{{ prod.pk }} });">Comprar</a>
+			{% endif %}
+		{% endif %}
 		<div>
 			<h3>{{ prod.descripcion }}</h3>
 		</div>
