@@ -2,10 +2,10 @@
 {% load thumbnail %}
 
 {% block contain %}
-{% thumbnail usuario.avatar "70x70" crop="center" as im %}
+{% thumbnail usuario.avatar "80x80" crop="center" as im %}
 <img src="{{ im.url }}">
 {% endthumbnail %}
-<h2>Configuracion de Perfil</h2>
+<h2>Eliminar Perfil</h2>
 <form method="post">
 	<div id="form">
 		{% csrf_token %}
@@ -13,7 +13,4 @@
 		<input type="submit">
 	</div>
 </form>
-<h4>
-	<a href="{% url 'delete' usuario.uid %}">Eliminar cuenta</a>
-</h4>
 {% endblock %}

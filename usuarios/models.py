@@ -2,11 +2,11 @@ from django.db import models
 from main.models import Producto
 
 class Usuario(models.Model):
-	uid = models.TextField(primary_key=True ,blank=False)
-	username = models.TextField(unique=True)
+	uid = models.CharField(primary_key=True ,blank=False, max_length=60)
+	username = models.CharField(unique=True, max_length=60)
 	avatar = models.URLField()
 	email = models.EmailField(blank=True, unique=True)
-	backend = models.TextField(max_length=20)
+	backend = models.CharField(max_length=20)
 	producto_votacion = models.ManyToManyField(Producto, related_name='vot+', through='Votacion')
 	producto_compra = models.ManyToManyField(Producto ,through='Compra')
 
