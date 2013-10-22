@@ -10,7 +10,9 @@
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style_common.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style5.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/blueberry.css">
 	<script src="{{ STATIC_URL }}js/jquery.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.blueberry.js"></script>
 	<script src="{{ STATIC_URL }}js/ajax.js"></script>
 	{% dajaxice_js_import %}
 </head>
@@ -27,8 +29,8 @@
 	<div class="divmenu">
 		<ul class="menu">
 			<li><a href="{% url 'main' %}">Inicio</a></li>
-			<li><a href="#categoria">Categoria</a></li>
-			<li><a href="#plataforma">Plataforma</a></li>
+			<li><a href="{% url 'plataforma' %}">Plataforma</a></li>
+			<li><a href="{% url 'genero' %}">Genero</a></li>
 			<li><a href="#about">Contacto</a></li>
 		</ul>
 	</div>

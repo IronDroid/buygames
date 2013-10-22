@@ -77,6 +77,24 @@ header *{
 	display: inline-block;
 	vertical-align: top;
 }
+.row{
+	margin-top: .2em;
+	display: table-row;
+}
+.row div{
+	background: #dedede;
+	border: solid .15em white;
+	display: table-cell;
+	height: 3.5em;
+	margin: .1em;
+	padding: .05em 1em;
+	text-align: center;
+	vertical-align: middle;
+}
+.head div{
+	background: #323232;
+	color: #efefef;
+}
 .votos *{
 	color: black;
 	vertical-align: top;

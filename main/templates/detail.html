@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load thumbnail %}
+
 {% block contain %}
 <div class="container">
 	<div class="cover-container">
@@ -27,13 +28,13 @@
 	</div>
 </div>
 <iframe width="560" height="315" src="{{ prod.trailer }}" frameborder="0"></iframe>
-<div id="capturas">
+
 {% for capt in capturas %}
-	<div>
-		{% thumbnail capt.img_captura "550x450" crop="center" as im %}
-		<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-		{% endthumbnail %}
-	</div> 
+<div>
+	{% thumbnail capt.img_captura "550x450" crop="center" as im %}
+	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+	{% endthumbnail %}
+</div> 
 {% endfor %}
-</div>
+
 {% endblock contain %}

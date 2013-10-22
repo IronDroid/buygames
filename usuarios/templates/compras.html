@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block contain %}
+	<article class="row head">
+		<div>Cod. Compra</div>
+		<div>Nombre del Juego</div>
+		<div>Precio</div>
+		<div>fecha</div>
+	</article>
+{% for compra in compras %}
+	<article class="row">
+		<div>{{ compra.pk }}</div>
+		<div>{{ compra.prod.nombre }}</div>
+		<div>{{ compra.prod.precio }}</div>
+		<div>{{ compra.fecha_compra }}</div>
+	</article>
+{% endfor %}
+{% endblock contain %}
