@@ -12,15 +12,4 @@ def get_user_avatar(backend, details, response, social_user, uid, user, *args, *
         url = response.get('profile_image_url', '').replace('_normal', '')
 
     if url:
-        usuario = Usuario()
-        usuario.uid = user.username
-        usuario.username = details['first_name'] +" "+ details['last_name']
-        usuario.email = details['email']
-        usuario.avatar = url
-        usuario.backend = backend.name
-
-        try:
-            if not Usuario.objects.get(username = usuario.username) != None:
-                usuario.save()
-        except Exception, e:
-            usuario.save()
+        Usuario.objects.get_or_create(uid=user.username, username=details['fullname'], email=details['email'], avatar=url, backend=backend.name)

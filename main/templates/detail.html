@@ -36,5 +36,27 @@
 	{% endthumbnail %}
 </div> 
 {% endfor %}
+{% if user.is_authenticated %}
+<form method="post">
+	<div id="form_comment">
+		{% csrf_token %}
+		{% thumbnail usuario.avatar "50x50" crop="center" as im %}
+		    <img src="{{ im.url }}">
+		{% endthumbnail %}
+		{{ form }}
+		<p><input id="submit_form_comment" type="submit" value="Comentar"></p>
+	</div>
+</form>
+{% endif %}
+
+{% for comment in comments %}
+	<article class="content_comment">
+		{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
+		    <img src="{{ im.url }}">
+		{% endthumbnail %}
+		<h3>{{ comment.comment }}</h3>
+		<h5>{{ comment.submit_date }}</h5>
+	</article>
+{% endfor %}
 
 {% endblock contain %}

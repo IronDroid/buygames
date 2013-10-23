@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario, Comentario, Compra, Votacion
+from .models import Usuario, Compra, Votacion
 
 class VotacionAdmin(admin.ModelAdmin):
 	list_display = ('usuario', 'producto', 'fecha_voto',)
@@ -7,7 +7,9 @@ class VotacionAdmin(admin.ModelAdmin):
 class UsuarioAdmin(admin.ModelAdmin):
 	filter_horizontal = ('producto_votacion',)
 
+class CompraAdmin(admin.ModelAdmin):
+	list_display = ('usuario', 'producto',)
+
 admin.site.register(Usuario, UsuarioAdmin)
-admin.site.register(Comentario)
-admin.site.register(Compra)
+admin.site.register(Compra, CompraAdmin)
 admin.site.register(Votacion, VotacionAdmin)

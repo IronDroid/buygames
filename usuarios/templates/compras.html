@@ -13,5 +13,7 @@
 		<div>{{ compra.prod.precio }}</div>
 		<div>{{ compra.fecha_compra }}</div>
 	</article>
+{% empty %}
+	<h3>No tienes ninguna compra ;)</h3>
 {% endfor %}
 {% endblock contain %}

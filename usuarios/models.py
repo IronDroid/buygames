@@ -28,12 +28,3 @@ class Votacion(models.Model):
 
 	class Meta:
 		unique_together = ("usuario", "producto",)
-
-class Comentario(models.Model):
-	usuario = models.ForeignKey(Usuario)
-	producto = models.ForeignKey(Producto)
-	comentario = models.CharField(max_length=140)
-	fecha_comentario = models.DateField(auto_now=True)
-
-	def __unicode__(self):
-		return self.comentario

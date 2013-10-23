@@ -19,11 +19,17 @@ def sayhello(request, pid):
 def comprar(request, pid):
 	user = Usuario.objects.get(uid=request.user)
 	prod = Producto.objects.get(pk=pid)
-	compra, created = Compra.objects.get_or_create(usuario=user, producto=prod)
 	s = Stock.objects.get(producto=prod)
-	stock = False
-	if s.stock > 0 and created:
-		s.stock = s.stock - 1
-		s.save()
-		stock = True
+	print s.stock
+	created = False
+	if s.stock == 0:
+		stock = False;
+	if s.stock > 0:
+		stock = True;
+		compra, created = Compra.objects.get_or_create(usuario=user, producto=prod)
+		if created:
+			s.stock = s.stock - 1
+			s.save()
+		print created
+	print stock
 	return simplejson.dumps({'compra':created, 'stock':stock})

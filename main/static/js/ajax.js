@@ -4,12 +4,11 @@ function voto_callback(data){
 
 function compra_callback(data) {
 	if (!data.stock) {
-		alert("Producto sin stock");
-	};
-	if (!data.compra) {
-		alert("Producto comprado");
+		alert("Lo sentimos, ya no tenemos este juego... :'(");
 	};
 	if (data.stock && data.compra) {
+		alert("comprado");
 		$(".btn-comprar")[0].innerText = "Comprado";
+		$('.btn-comprar').removeAttr('onclick');
 	};
 }

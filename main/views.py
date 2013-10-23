@@ -1,9 +1,10 @@
-from django.http import HttpResponse
-from django.shortcuts import render_to_response, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
+from .forms import ComentarioForm
 from .models import Producto, Screenshot, Plataforma, Genero
 from usuarios.models import Usuario, Votacion, Compra
 from inventario.models import Stock
+from tendencia.models import Comentario
 
 def main(request):
 	stocks = Stock.objects.all()
@@ -20,19 +21,29 @@ def detail(request, idp):
 	producto = get_object_or_404(Producto, pk=idp)
 	capturas = Screenshot.objects.filter(id_producto = producto)
 	votos = len(Votacion.objects.filter(producto=producto))
+	comentarios = Comentario.objects.order_by("-submit_date").filter(prod=producto)
 
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
+		comment = Comentario(user=usuario, prod=producto)
+		if request.method == 'POST':
+			form = ComentarioForm(request.POST, instance=comment)
+			if form.is_valid():
+				form.save()
+				return redirect('detail', idp)
+		else:
+			form = ComentarioForm(instance=comment)
+
 		try:
 			Compra.objects.get(usuario=usuario, producto=producto)
 			is_compra = True
 		except Compra.DoesNotExist:
 			is_compra = False
 		return render_to_response('detail.html', {
-			'prod':producto, 'capturas':capturas, 'usuario':usuario, 'votos':votos, 'is_compra':is_compra}, context_instance=RequestContext(request, locals()))
+			'prod':producto, 'capturas':capturas, 'usuario':usuario, 'votos':votos, 'is_compra':is_compra, 'comments':comentarios}, context_instance=RequestContext(request, locals()))
 	else:
 		return render_to_response('detail.html', {
-			'prod':producto, 'capturas':capturas, 'votos':votos}, context_instance=RequestContext(request, locals()))
+			'prod':producto, 'capturas':capturas, 'votos':votos, 'comments':comentarios}, context_instance=RequestContext(request, locals()))
 
 def plataforma(request):
 	stocks = Stock.objects.all()
@@ -67,16 +78,11 @@ def genero(request):
 		productos = list()
 		gendict['gen'] = g.descripcion_genero
 		for stock in stocks:
-			print '*' *15
 			if stock.producto.genero == g:
-				print True
 				productos.append(stock.producto)
-			print '*' *15
 		else:
 			gendict['prod'] = productos
 		genlist.append(gendict)
-
-	print genlist
 
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
