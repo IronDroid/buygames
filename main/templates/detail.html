@@ -54,8 +54,9 @@
 		{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
 		    <img src="{{ im.url }}">
 		{% endthumbnail %}
+		<h2>{{ comment.user.username }}</h2>
 		<h3>{{ comment.comment }}</h3>
-		<h5>{{ comment.submit_date }}</h5>
+		<h5 title="{{ comment.submit_date|date:"D d M Y h:m A" }}"></h5>
 	</article>
 {% endfor %}
 
