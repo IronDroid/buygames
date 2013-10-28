@@ -12,6 +12,7 @@ header *{
 }
 .btn-comprar{
 	background: #e74c3c;
+	color: white;
 	padding: .5em 1em;
 }
 .btn-comprar:hover{
@@ -105,7 +106,14 @@ header *{
 	max-width: 1200px;
 }
 .wrap-contain{
-	background: #ededed;
+	background: #ECF0F1;
 	margin: 0 auto;
 	max-width: 1000px;
+}
+
+.artgen{
+	background: #73E59C;
+}
+.artplat{
+	background: #8A90DA;
 }

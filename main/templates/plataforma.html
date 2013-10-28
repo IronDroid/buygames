@@ -3,19 +3,21 @@
 {% block contain %}
 	<h2>Plataformas</h2>
 	{% for k in platdict %}
+	<article class="artplat">
 		<h3>{{ k.plat }}</h3>
 		{% for prod in k.prod %}
 			<div class="producto view view-fifth">
-	{% thumbnail prod.portada "250x250" crop="center" as im %}
-	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-	{% endthumbnail %}
-	<div class="mask">
-		<h2>{{ prod.nombre }}</h2>
-		<p>{{ prod.genero }}</p>
-		<h4>{{ prod.fecha_lanzamiento }}</h4>
-		<a class="info" href="{% url 'detail' prod.pk %}">Comprar</a>
-	</div>
-</div>
+				{% thumbnail prod.portada "250x250" crop="center" as im %}
+				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+				{% endthumbnail %}
+				<div class="mask">
+					<h2>{{ prod.nombre }}</h2>
+					<p>{{ prod.genero }}</p>
+					<h4>{{ prod.fecha_lanzamiento }}</h4>
+					<a class="info" href="{% url 'detail' prod.pk %}">Comprar</a>
+				</div>
+			</div>
 		{% endfor %}
+	</article>
 	{% endfor %}
 {% endblock contain %}

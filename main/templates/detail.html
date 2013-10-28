@@ -27,15 +27,26 @@
 		{% include "votos.html" %}
 	</div>
 </div>
-<iframe width="560" height="315" src="{{ prod.trailer }}" frameborder="0"></iframe>
+{# <iframe width="560" height="315" src="{{ prod.trailer }}" frameborder="0"></iframe> #}
 
-{% for capt in capturas %}
-<div>
-	{% thumbnail capt.img_captura "550x450" crop="center" as im %}
-	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-	{% endthumbnail %}
-</div> 
-{% endfor %}
+<div class="jcarousel-skin-tango">
+	<div class="jcarousel-container">
+		<div class="jcarousel-prev">&laquo;</div>
+		<div class="jcarousel-clip">
+			<ul id="mycarousel" class="jcarousel-list">
+				{% for capt in capturas %}
+					<li class="jcarousel-item-{{ forloop.counter }}">
+						{% thumbnail capt.img_captura "400x300" crop="center" as im %}
+						<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="jcarousel-next">&raquo;</div>
+	</div>
+</div>
+
 {% if user.is_authenticated %}
 <form method="post">
 	<div id="form_comment">
@@ -49,6 +60,7 @@
 </form>
 {% endif %}
 
+<section class="section_comment">
 {% for comment in comments %}
 	<article class="content_comment">
 		{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
@@ -59,5 +71,5 @@
 		<h5 title="{{ comment.submit_date|date:"D d M Y h:m A" }}"></h5>
 	</article>
 {% endfor %}
-
+</section>
 {% endblock contain %}
