@@ -35,6 +35,7 @@ header *{
 }
 .container{
 	padding: 1em 0;
+	margin-left: 50px;
 	width: 100%;
 }
 .divmenu{
@@ -92,9 +93,18 @@ header *{
 	text-align: center;
 	vertical-align: middle;
 }
+.trailer{
+	text-align: center;
+}
 .head div{
 	background: #323232;
 	color: #efefef;
+}
+.voto{
+	cursor: default;
+}
+.votos img{
+	cursor: pointer;
 }
 .votos *{
 	color: black;
@@ -106,7 +116,7 @@ header *{
 	max-width: 1200px;
 }
 .wrap-contain{
-	background: #ECF0F1;
+	background: #DDDDDD;
 	margin: 0 auto;
 	max-width: 1000px;
 }

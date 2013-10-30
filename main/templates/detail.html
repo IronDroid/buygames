@@ -27,7 +27,9 @@
 		{% include "votos.html" %}
 	</div>
 </div>
-{# <iframe width="560" height="315" src="{{ prod.trailer }}" frameborder="0"></iframe> #}
+<div class="trailer">
+	<iframe width="560" height="315" src="{{ prod.trailer }}" frameborder="0"></iframe>
+</div>
 
 <div class="jcarousel-skin-tango">
 	<div class="jcarousel-container">
@@ -72,4 +74,33 @@
 	</article>
 {% endfor %}
 </section>
+
+	<div class="pago" id="pago">
+		<div class="overlay animated"></div>
+		<div class="panel animated">
+			<h2>Gracias por comprar</h2>
+			<div class="screen active">
+				{% thumbnail prod.portada "200x200" crop="center" as im %}
+				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+				{% endthumbnail %}
+				<h3>No olvides votar y comentar lo juegos que mas te gusten.</h3>
+				<button id="cerrar" type="text" href="#url">Aceptar</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="pago" id="stock">
+		<div class="overlay animated"></div>
+		<div class="panel animated">
+			<h2>Lo sentimos :(</h2>
+			<div class="screen active">
+				{% thumbnail prod.portada "200x200" crop="center" as im %}
+				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+				{% endthumbnail %}
+				<h3>Se nos ha acabado este juego. En breve lo solucionamos.</h3>
+				<button id="cerrar_stock" type="text" href="#url">Aceptar</button>
+			</div>
+		</div>
+	</div>
+
 {% endblock contain %}

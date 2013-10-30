@@ -1,10 +1,8 @@
 <div class="votos">
-	<a href="#votar">
-		<img src="{{ STATIC_URL }}img/button-up.jpg" alt="voto">
-		{% if user.is_anonymous %}
-		<span>Votos: {{ votos }}</span>	
-		{% else %}
-		<span class="voto" onclick="Dajaxice.main.sayhello(voto_callback, {'pid':{{ prod.pk }} });">Votos: {{ votos }}</span>
-		{% endif %}
-	</a>
+	{% if user.is_anonymous %}
+		<img src="{{ STATIC_URL }}img/button-up.jpg">
+	{% else %}
+		<img src="{{ STATIC_URL }}img/button-up.jpg" onclick="Dajaxice.main.sayhello(voto_callback, {'pid':{{ prod.pk }} });">
+	{% endif %}
+	<span class="voto">Votos: {{ votos }}</span>
 </div>

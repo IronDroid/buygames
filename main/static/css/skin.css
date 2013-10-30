@@ -3,6 +3,8 @@
     background: #80d9bb;
     width: 790px;
     padding: 20px 40px;
+    margin-left: 100px;
+    text-align: center;
 }
 .jcarousel-skin-tango .jcarousel-clip {
     overflow: hidden;
