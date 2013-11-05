@@ -11,7 +11,7 @@ class Genero(models.Model):
 
 	def __unicode__(self):
 		return self.descripcion_genero
-
+# tiene 2 ralaciones
 class Producto(models.Model):
 	nombre = models.CharField(max_length=140)
 	portada = models.ImageField(upload_to='portada')
@@ -25,6 +25,7 @@ class Producto(models.Model):
 	def __unicode__(self):
 		return self.nombre
 
+# tiene relacion
 class Screenshot(models.Model):
 	id_producto = models.ForeignKey(Producto)
 	img_captura = models.ImageField(upload_to='imagenes')

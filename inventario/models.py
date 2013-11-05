@@ -9,6 +9,7 @@ class Empresa(models.Model):
 	def __unicode__(self):
 		return self.nombre
 
+# ralacion
 class Stock(models.Model):
 	empresa = models.ForeignKey(Empresa)
 	producto = models.ForeignKey(Producto)
