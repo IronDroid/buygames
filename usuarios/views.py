@@ -11,8 +11,8 @@ from main.models import Producto
 from main.forms import UsuarioForm
 
 @login_required
-def perfil(request, user):
-	usuario = Usuario.objects.get(uid=user)
+def perfil(request):
+	usuario = Usuario.objects.get(uid=request.user)
 	if request.method == 'POST':
 		form = UsuarioForm(request.POST, instance=usuario)
 		if form.is_valid():

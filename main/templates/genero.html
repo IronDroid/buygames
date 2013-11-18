@@ -4,8 +4,8 @@
 	<h2>Generos</h2>
 	{% for k in gendict %}
 	<article class="artgen">
+	<h3>{{ k.gen }}</h3>
 		{% for prod in k.prod %}
-		<h3>{{ k.gen }}</h3>
 		<div class="producto view view-fifth">
 			{% thumbnail prod.portada "250x250" crop="center" as im %}
 			<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">

@@ -20,16 +20,23 @@ def comprar(request, pid):
 	user = Usuario.objects.get(uid=request.user)
 	prod = Producto.objects.get(pk=pid)
 	s = Stock.objects.get(producto=prod)
-	print s.stock
-	created = False
-	if s.stock == 0:
-		stock = False;
-	if s.stock > 0:
-		stock = True;
-		compra, created = Compra.objects.get_or_create(usuario=user, producto=prod)
-		if created:
-			s.stock = s.stock - 1
-			s.save()
-		print created
-	print stock
-	return simplejson.dumps({'compra':created, 'stock':stock})
+	if valid_card(user):
+		created = False
+		if s.stock == 0:
+			stock = False;
+		if s.stock > 0:
+			stock = True;
+			compra, created = Compra.objects.get_or_create(usuario=user, producto=prod)
+			if created:
+				s.stock = s.stock - 1
+				s.save()
+		return simplejson.dumps({'compra':created, 'stock':stock})
+	else:
+		return simplejson.dumps({'card':True, 'msj':'Necesitamos que registre una tarjeta de credito'})
+
+def valid_card(user):
+	if user.nro_tarjeta and user.cvc and user.mes_vencimiento and user.year_vencimiento:
+		return True
+	else:
+		return False
+	

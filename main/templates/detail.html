@@ -12,12 +12,12 @@
 		<h2>{{ prod.nombre }}</h2>
 		<h5>{{ prod.fecha_lanzamiento }}</h5>
 		{% if user.is_anonymous %}
-			<span class="btn-comprar">Comprar</span>
+			<span class="btn-comprar">Comprar {{ prod.precio }}$</span>
 		{% else %}
 			{% if is_compra %}
-				<a class="btn-comprar" href="#comprado">Comprado</a>
+				<a class="btn-comprar" href="#comprado">Comprado </a>
 			{% else %}
-				<a class="btn-comprar" href="#comprar" onclick="Dajaxice.main.comprar(compra_callback, {'pid':{{ prod.pk }} });">Comprar</a>
+				<a class="btn-comprar" href="#comprar" onclick="Dajaxice.main.comprar(compra_callback, {'pid':{{ prod.pk }} });">Comprar {{ prod.precio }}$</a>
 			{% endif %}
 		{% endif %}
 		<div>
@@ -99,6 +99,20 @@
 				{% endthumbnail %}
 				<h3>Se nos ha acabado este juego. En breve lo solucionamos.</h3>
 				<button id="cerrar_stock" type="text" href="#url">Aceptar</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="pago" id="notcard">
+		<div class="overlay animated"></div>
+		<div class="panel animated">
+			<h2>Lo sentimos :(</h2>
+			<div class="screen active">
+				{% thumbnail prod.portada "200x200" crop="center" as im %}
+				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+				{% endthumbnail %}
+				<h3 id="msj"></h3>
+				<button id="cerrar_card" type="text" href="#url">Aceptar</button>
 			</div>
 		</div>
 	</div>

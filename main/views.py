@@ -76,14 +76,15 @@ def genero(request):
 	for g in gen:
 		gendict = dict()
 		productos = list()
-		gendict['gen'] = g.descripcion_genero
 		for stock in stocks:
 			if stock.producto.genero == g:
 				productos.append(stock.producto)
 		else:
-			gendict['prod'] = productos
-		genlist.append(gendict)
-
+			if len(productos) > 0:
+				gendict['gen'] = g.descripcion_genero
+				gendict['prod'] = productos
+				genlist.append(gendict)
+	print len(genlist)
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
 		return render_to_response('genero.html', {'gendict':genlist, 'usuario': usuario}, context_instance=RequestContext(request))
