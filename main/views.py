@@ -11,11 +11,15 @@ def main(request):
 	productos = list()
 	for stock in stocks:
 		productos.append(stock.producto)
+
+	dict_return = dict()
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
-		return render_to_response('home.html', {'productos':productos, 'usuario': usuario}, context_instance=RequestContext(request))
+		dict_return = {'productos':productos, 'usuario': usuario}
 	else:
-		return render_to_response('home.html', {'productos':productos}, context_instance=RequestContext(request))
+		dict_return = {'productos':productos}
+	
+	return render_to_response('home.html', dict_return, context_instance=RequestContext(request))
 
 def detail(request, idp):
 	producto = get_object_or_404(Producto, pk=idp)
@@ -23,6 +27,7 @@ def detail(request, idp):
 	votos = len(Votacion.objects.filter(producto=producto))
 	comentarios = Comentario.objects.order_by("-submit_date").filter(prod=producto)
 
+	dict_return = dict()
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
 		comment = Comentario(user=usuario, prod=producto)
@@ -39,11 +44,12 @@ def detail(request, idp):
 			is_compra = True
 		except Compra.DoesNotExist:
 			is_compra = False
-		return render_to_response('detail.html', {
-			'prod':producto, 'capturas':capturas, 'usuario':usuario, 'votos':votos, 'is_compra':is_compra, 'comments':comentarios}, context_instance=RequestContext(request, locals()))
+
+		dict_return = {'prod':producto, 'capturas':capturas, 'usuario':usuario, 'votos':votos, 'is_compra':is_compra, 'comments':comentarios}
 	else:
-		return render_to_response('detail.html', {
-			'prod':producto, 'capturas':capturas, 'votos':votos, 'comments':comentarios}, context_instance=RequestContext(request, locals()))
+		dict_return = {'prod':producto, 'capturas':capturas, 'votos':votos, 'comments':comentarios}
+	
+	return render_to_response('detail.html', dict_return, context_instance=RequestContext(request, locals()))
 
 def plataforma(request):
 	stocks = Stock.objects.all()
@@ -62,11 +68,14 @@ def plataforma(request):
 			platdict['prod'] = productos
 		platlist.append(platdict)
 
+	dict_return = dict()
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
-		return render_to_response('plataforma.html', {'platdict':platlist, 'usuario': usuario}, context_instance=RequestContext(request))
+		dict_return =  {'platdict':platlist, 'usuario': usuario}
 	else:
-		return render_to_response('plataforma.html', {'platdict':platlist}, context_instance=RequestContext(request))
+		dict_return = {'platdict':platlist}
+
+	return render_to_response('plataforma.html', dict_return, context_instance=RequestContext(request))
 
 def genero(request):
 	stocks = Stock.objects.all()
@@ -84,9 +93,10 @@ def genero(request):
 				gendict['gen'] = g.descripcion_genero
 				gendict['prod'] = productos
 				genlist.append(gendict)
-	print len(genlist)
+	dict_return = dict()
 	if request.user.is_authenticated():
 		usuario = Usuario.objects.get(uid=request.user.username)
-		return render_to_response('genero.html', {'gendict':genlist, 'usuario': usuario}, context_instance=RequestContext(request))
+		dict_return = {'gendict':genlist, 'usuario': usuario}
 	else:
-		return render_to_response('genero.html', {'gendict':genlist}, context_instance=RequestContext(request))
+		dict_return = {'gendict':genlist}
+	return render_to_response('genero.html', dict_return, context_instance=RequestContext(request))

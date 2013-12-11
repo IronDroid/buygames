@@ -12,4 +12,7 @@ def get_user_avatar(backend, details, response, social_user, uid, user, *args, *
         url = response.get('profile_image_url', '').replace('_normal', '')
 
     if url:
-    	Usuario.objects.get_or_create(uid=user.username, username=details['fullname'], email=details['email'], avatar=url, backend=backend.name)
+    	if backend.name == 'twitter':
+    		Usuario.objects.get_or_create(uid=user.username, username=details['fullname'], avatar=url, backend=backend.name)
+    	else:
+    		Usuario.objects.get_or_create(uid=user.username, username=details['fullname'], email=details['email'], avatar=url, backend=backend.name)

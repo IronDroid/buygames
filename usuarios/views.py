@@ -45,7 +45,10 @@ def detalle_compra(request):
 	usuario = Usuario.objects.get(uid=request.user)
 	compras = Compra.objects.filter(usuario=usuario)
 	listCompra = list()
+	total = 0;
 	for c in compras:
-		listCompra.append({'pk':c.pk, 'prod':Producto.objects.get(pk=c.producto.pk), 'fecha_compra':c.fecha_compra})
+		p = Producto.objects.get(pk=c.producto.pk)
+		total = total + p.precio
+		listCompra.append({'pk':c.pk, 'prod':p, 'fecha_compra':c.fecha_compra})
 
-	return render_to_response('compras.html', {'usuario':usuario, 'compras':listCompra}, context_instance=RequestContext(request))
+	return render_to_response('compras.html', {'usuario':usuario, 'compras':listCompra, 'total':total}, context_instance=RequestContext(request))

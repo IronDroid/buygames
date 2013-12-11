@@ -32,7 +32,7 @@ def comprar(request, pid):
 				s.save()
 		return simplejson.dumps({'compra':created, 'stock':stock})
 	else:
-		return simplejson.dumps({'card':True, 'msj':'Necesitamos que registre una tarjeta de credito'})
+		return simplejson.dumps({'card':True, 'msj':'Necesitamos que registre una tarjeta de credito valida.'})
 
 def valid_card(user):
 	if user.nro_tarjeta and user.cvc and user.mes_vencimiento and user.year_vencimiento:

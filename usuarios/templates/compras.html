@@ -1,19 +1,26 @@
 {% extends "base.html" %}
 {% block contain %}
+<div>{{ compras.total }}</div>
 	<article class="row head">
 		<div>Cod. Compra</div>
 		<div>Nombre del Juego</div>
+		<div>Fecha</div>
 		<div>Precio</div>
-		<div>fecha</div>
 	</article>
 {% for compra in compras %}
 	<article class="row">
 		<div>{{ compra.pk }}</div>
 		<div>{{ compra.prod.nombre }}</div>
-		<div>{{ compra.prod.precio }}</div>
 		<div>{{ compra.fecha_compra }}</div>
+		<div>{{ compra.prod.precio }}</div>
 	</article>
 {% empty %}
 	<h3>No tienes ninguna compra ;)</h3>
 {% endfor %}
+	<article class="row">
+		<div></div>
+		<div></div>
+		<div>TOTAL: </div>
+		<div>{{ total }}</div>
+	</article>
 {% endblock contain %}
