@@ -1,6 +1,5 @@
 from django.core.files import File
 from .models import Usuario
-import urllib2
 
 def get_user_avatar(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = None
